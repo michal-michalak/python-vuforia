@@ -73,7 +73,7 @@ class Vuforia(object):
         return o.path
 
     def _hmac_sha1_base64(self, key, message):
-        return base64.b64encode(hmac(key, message, sha1).digest())
+        return base64.b64encode(hmac(str(key), str(message), sha1).digest())
 
     def _get_content_md5(self, req):
         if req.get_data():
