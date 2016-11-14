@@ -103,6 +103,8 @@ class Vuforia(object):
         except urllib2.HTTPError, e:
             response = json.loads(e.read())
             result_code = response['result_code']
+            if result_code == 'AuthenticationFailure':
+                raise VuforiaAuthenticationFailure(e, response)
             if result_code == 'RequestTimeTooSkewed':
                 raise VuforiaRequestTimeTooSkewed(e, response)
             elif result_code == 'TargetNameExist':
