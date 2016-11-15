@@ -33,6 +33,10 @@ class VuforiaTargetNameExist(VuforiaBaseError):
     pass
 
 
+class VuforiaTargetStatusNotSuccess(VuforiaBaseError):
+    pass
+
+
 class VuforiaUnknownTarget(VuforiaBaseError):
     pass
 
@@ -51,7 +55,6 @@ class VuforiaMetadataTooLarge(VuforiaBaseError):
 
 class VuforiaDateRangeError(VuforiaBaseError):
     pass
-
 
 class VuforiaFail(VuforiaBaseError):
     pass
@@ -109,6 +112,8 @@ class Vuforia(object):
                 raise VuforiaRequestTimeTooSkewed(e, response)
             elif result_code == 'TargetNameExist':
                 raise VuforiaTargetNameExist(e, response)
+            elif result_code == 'TargetStatusNotSuccess':
+                raise VuforiaTargetStatusNotSuccess(e, response)
             elif result_code == 'RequestQuotaReached':
                 raise VuforiaRequestQuotaReached(e, response)
             elif result_code == 'UnknownTarget':
