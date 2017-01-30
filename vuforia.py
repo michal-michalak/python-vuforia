@@ -25,6 +25,10 @@ class VuforiaAuthenticationFailure(VuforiaBaseError):
     pass
 
 
+class VuforiaProjectSuspended(VuforiaBaseError):
+    pass
+
+
 class VuforiaRequestTimeTooSkewed(VuforiaBaseError):
     pass
 
@@ -47,7 +51,7 @@ class VuforiaBadImage(VuforiaBaseError):
 
 class VuforiaImageTooLarge(VuforiaBaseError):
     pass
-
+ 
 
 class VuforiaMetadataTooLarge(VuforiaBaseError):
     pass
@@ -108,6 +112,8 @@ class Vuforia(object):
             result_code = response['result_code']
             if result_code == 'AuthenticationFailure':
                 raise VuforiaAuthenticationFailure(e, response)
+            if result_code == 'ProjectSuspended':
+                raise VuforiaProjectSuspended(e, response)
             if result_code == 'RequestTimeTooSkewed':
                 raise VuforiaRequestTimeTooSkewed(e, response)
             elif result_code == 'TargetNameExist':
