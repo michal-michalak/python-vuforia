@@ -41,6 +41,10 @@ class VuforiaTargetStatusNotSuccess(VuforiaBaseError):
     pass
 
 
+class VuforiaTargetStatusProcessing(VuforiaBaseError):
+    pass
+
+
 class VuforiaUnknownTarget(VuforiaBaseError):
     pass
 
@@ -120,6 +124,8 @@ class Vuforia(object):
                 raise VuforiaTargetNameExist(e, response)
             elif result_code == 'TargetStatusNotSuccess':
                 raise VuforiaTargetStatusNotSuccess(e, response)
+            elif result_code == 'TargetStatusProcessing':
+                raise VuforiaTargetStatusProcessing(e, response)
             elif result_code == 'RequestQuotaReached':
                 raise VuforiaRequestQuotaReached(e, response)
             elif result_code == 'UnknownTarget':
