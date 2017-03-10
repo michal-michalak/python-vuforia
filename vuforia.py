@@ -151,6 +151,12 @@ class Vuforia(object):
         response = self._get_authenticated_response(req)
         return json.loads(response.read())['results']
 
+    def get_target_summary(self, target_id):
+        url = '%s/summary/%s' % (self.host, target_id)
+        req = urllib2.Request(url)
+        response = self._get_authenticated_response(req)
+        return json.loads(response.read())
+
     def get_summary(self):
         url = '%s/summary' % self.host
         req = urllib2.Request(url)
